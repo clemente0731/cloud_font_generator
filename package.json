@@ -1,0 +1,108 @@
+{
+  "name": "cloud-font-generator",
+  "version": "1.0.0",
+  "description": "A cloud-style font generator for Windows",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "dev": "webpack serve --mode development --open",
+    "build": "webpack --mode production && electron-builder",
+    "webpack-build": "webpack --mode production",
+    "electron-dev": "electron . --dev",
+    "pack": "npm run webpack-build && electron-builder --dir",
+    "dist": "npm run webpack-build && electron-builder",
+    "dist:mac": "npm run webpack-build && electron-builder --mac",
+    "dist:win": "npm run webpack-build && electron-builder --win",
+    "dist:linux": "npm run webpack-build && electron-builder --linux",
+    "dist:all": "npm run webpack-build && electron-builder -mwl"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-color": "^2.19.3",
+    "styled-components": "^5.3.10"
+  },
+  "devDependencies": {
+    "electron": "^25.0.0",
+    "electron-builder": "^24.4.0",
+    "@babel/core": "^7.22.1",
+    "@babel/preset-env": "^7.22.4",
+    "@babel/preset-react": "^7.22.3",
+    "babel-loader": "^9.1.2",
+    "css-loader": "^6.8.1",
+    "html-webpack-plugin": "^5.5.1",
+    "style-loader": "^3.3.3",
+    "webpack": "^5.85.0",
+    "webpack-cli": "^5.1.1",
+    "webpack-dev-server": "^4.15.0"
+  },
+  "build": {
+    "appId": "com.cloudfonts.app",
+    "productName": "云朵字体生成器",
+    "files": [
+      "build/**/*",
+      "node_modules/**/*",
+      "public/**/*",
+      "main.js",
+      "preload.js",
+      "package.json"
+    ],
+    "directories": {
+      "buildResources": "build",
+      "output": "dist"
+    },
+    "mac": {
+      "category": "public.app-category.graphics-design",
+      "target": [
+        "dmg",
+        "zip"
+      ],
+      "icon": "public/yunduo_m.png",
+      "darkModeSupport": true
+    },
+    "win": {
+      "target": [
+        "nsis",
+        "portable"
+      ],
+      "icon": "public/yunduo_m.png"
+    },
+    "linux": {
+      "target": [
+        "AppImage",
+        "deb",
+        "rpm"
+      ],
+      "category": "Graphics",
+      "icon": "public/yunduo_m.png"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "云朵字体生成器"
+    },
+    "dmg": {
+      "contents": [
+        {
+          "x": 130,
+          "y": 220
+        },
+        {
+          "x": 410,
+          "y": 220,
+          "type": "link",
+          "path": "/Applications"
+        }
+      ],
+      "window": {
+        "width": 540,
+        "height": 380
+      }
+    },
+    "publish": null
+  }
+} 
