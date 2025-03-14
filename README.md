@@ -24,6 +24,7 @@ npm install
 3. 启动开发服务器：
 
 ```bash
+npm run webpack-build
 npm start
 ```
 
