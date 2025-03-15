@@ -8,7 +8,7 @@
     "dev": "webpack serve --mode development --open",
     "build": "webpack --mode production && electron-builder",
     "webpack-build": "webpack --mode production",
-    "electron-dev": "electron . --dev",
+    "electron-dev": "cross-env NODE_ENV=development electron . --dev",
     "pack": "npm run webpack-build && electron-builder --dir",
     "dist": "npm run webpack-build && electron-builder",
     "dist:mac": "npm run webpack-build && electron-builder --mac",
@@ -20,18 +20,20 @@
   "license": "MIT",
   "dependencies": {
     "react": "^18.2.0",
-    "react-dom": "^18.2.0",
     "react-color": "^2.19.3",
+    "react-dom": "^18.2.0",
     "styled-components": "^5.3.10"
   },
   "devDependencies": {
-    "electron": "^25.0.0",
-    "electron-builder": "^24.4.0",
     "@babel/core": "^7.22.1",
     "@babel/preset-env": "^7.22.4",
     "@babel/preset-react": "^7.22.3",
     "babel-loader": "^9.1.2",
+    "copy-webpack-plugin": "^11.0.0",
+    "cross-env": "^7.0.3",
     "css-loader": "^6.8.1",
+    "electron": "^25.0.0",
+    "electron-builder": "^24.4.0",
     "html-webpack-plugin": "^5.5.1",
     "style-loader": "^3.3.3",
     "webpack": "^5.85.0",
@@ -50,9 +52,15 @@
       "package.json"
     ],
     "directories": {
-      "buildResources": "build",
+      "buildResources": "public",
       "output": "dist"
     },
+    "extraResources": [
+      {
+        "from": "public",
+        "to": "public"
+      }
+    ],
     "mac": {
       "category": "public.app-category.graphics-design",
       "target": [
@@ -105,4 +113,4 @@
     },
     "publish": null
   }
-} 
+}
